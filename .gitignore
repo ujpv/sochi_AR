@@ -1,30 +1,3 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Gist
-
-    @ujpv
-
-465
-5,092
-
-    1,817
-
-openframeworks/openFrameworks
-Code
-Issues 739
-Pull requests 96
-Projects 0
-Wiki
-Pulse
-Graphs
-openFrameworks/tests/.gitignore
-1208437 on 1 Dec 2015
-@arturoc arturoc add visual studio projects
-68 lines (56 sloc) 1018 Bytes
 #########################
 # core examples
 #########################
@@ -62,10 +35,10 @@ openFrameworks/tests/.gitignore
 /*/*/.settings/
 
 # QtCreator
-/*/*/*.qbs
-/*/*/*.qbs.user
-/*/*/*.pro
-/*/*/*.pro.user
+*.qbs
+*.qbs.user
+*.pro
+*.pro.user
 
 # Android Studio
 *.iml
@@ -77,15 +50,15 @@ gradle/
 .gradle/
 
 #########################
+# build
+#########################
+build/
+obj/
+
+
+#########################
 # operating system
 #########################
-
-# Linux
-/*/*/Makefile
-/*/*/config.make
-# Leave Android files in until project generation works
-!/android/*/Makefile
-!/android/*/config.make
 
 # Android
 android/*/test link

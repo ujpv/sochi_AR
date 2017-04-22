@@ -1,0 +1,104 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Gist
+
+    @ujpv
+
+465
+5,092
+
+    1,817
+
+openframeworks/openFrameworks
+Code
+Issues 739
+Pull requests 96
+Projects 0
+Wiki
+Pulse
+Graphs
+openFrameworks/tests/.gitignore
+1208437 on 1 Dec 2015
+@arturoc arturoc add visual studio projects
+68 lines (56 sloc) 1018 Bytes
+#########################
+# core examples
+#########################
+
+*/*/bin/*
+!*/*/bin/data/
+
+#########################
+# IDE
+#########################
+
+# XCode
+/*/*/*.xcodeproj
+/*/*/Project.xcconfig
+/*/*/openFrameworks-Info.plist
+/*/*/ofxiOS-Info.plist
+/*/*/ofxiOS_Prefix.pch
+/*/*/*/*/Default*.png
+/*/*/*/*/Icon*.png
+
+# Code::Blocks
+/*/*/*.cbp
+/*/*/*.workspace
+
+# Visual Studio
+#/*/*/*.sln
+#/*/*/*.vcxproj
+#/*/*/*.vcxproj.user
+#/*/*/*.vcxproj.filters
+#/*/*/icon.rc
+
+# Eclipse
+/*/*/.cproject
+/*/*/.project
+/*/*/.settings/
+
+# QtCreator
+/*/*/*.qbs
+/*/*/*.qbs.user
+/*/*/*.pro
+/*/*/*.pro.user
+
+# Android Studio
+*.iml
+.idea/
+
+# Gradlew
+gradlew*
+gradle/
+.gradle/
+
+#########################
+# operating system
+#########################
+
+# Linux
+/*/*/Makefile
+/*/*/config.make
+# Leave Android files in until project generation works
+!/android/*/Makefile
+!/android/*/config.make
+
+# Android
+android/*/test link
+android/*/gen
+android/*/res/raw
+libOFAndroidApp*.so
+gdbserver
+gdb.setup
+libneondetection.so
+Application.mk
+Android.mk
+
+!/android/*/.cproject
+!/android/*/.project
+!/android/*/.settings
+

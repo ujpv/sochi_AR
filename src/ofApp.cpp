@@ -1,31 +1,34 @@
 #include "ofApp.h"
 #include "ofxAndroidVideoGrabber.h"
 
+#include "common/common.h"
 #include "activity_manager/activity_manager.h"
 
-//--------------------------------------------------------------
-const std::string ofApp::LOG_NAME = "Sochi_AR";
+////--------------------------------------------------------------
+//const std::string ofApp::LOG_NAME = "Sochi_AR";
 
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetLogLevel(OF_LOG_VERBOSE);
-    ofSetOrientation(OF_ORIENTATION_90_LEFT); //?
+//    ofSetOrientation(OF_ORIENTATION_90_LEFT); //?
 
-    ActivityManager *activityManager = ActivityManager::make(m_grabber);
+    int w = ofGetWidth();
+    int h = ofGetHeight();
+
+    ActivityManager *activityManager = ActivityManager::make(m_grabber, w, h);
 
     ofBackground(0, 0, 0);
 
     std::vector<ofVideoDevice> cameras = m_grabber.listDevices();
 
-    std::stringstream ss(LOG_NAME);
+    std::stringstream ss;
     ss << ": Found " << cameras.size() << ". cameras list: ";
     for (ofVideoDevice &c: cameras)
         ss << c.deviceName << "; ";
 
-    ofLog(OF_LOG_VERBOSE, ss.str());
+    ofLogVerbose(LOG_TAG, ss.str());
 
-    int w = ofGetWidth();
-    int h = ofGetHeight();
+
 
 //    m_grabber.setPixelFormat(OF_PIXELS_RGB);
     m_grabber.setup(h, w);
@@ -42,7 +45,7 @@ void ofApp::setup() {
         return;
     }
 
-    activityManager->showTextActivity("Test!!!!!\nTESTTTTTT!!!!!");
+    activityManager->showTextActivity("No camera");
 
 
     androidGrabber->setDeviceID(cameraID);

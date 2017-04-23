@@ -14,14 +14,16 @@ class ActivityManager
 public:
     void draw();
     void update();
-    static ActivityManager *make(ofVideoGrabber &cameraGraber);
+    static ActivityManager *make(ofVideoGrabber &cameraGraber, int width, int height);
     static ActivityManager *instance();
     void showActivity(std::shared_ptr<IActivity> pActivity);
     void showTextActivity(const std::string &text);
 
 private:
-    ActivityManager(ofVideoGrabber &cameraGraber)
+    ActivityManager(ofVideoGrabber &cameraGraber, int width, int height)
         : m_cameraGraber(cameraGraber)
+        , m_width(width)
+        , m_height(height)
     {}
 
     static ActivityManager *m_instance;

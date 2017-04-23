@@ -41,5 +41,5 @@ private:
 
     int m_cameraOrientation;
 
-    static const std::string LOG_NAME;
+//    static const std::string LOG_NAME;
 };

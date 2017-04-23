@@ -1,9 +1,12 @@
 #include "activity_manager.h"
+
+#include "ofGraphics.h"
 ActivityManager *ActivityManager::m_instance = nullptr;
 
 void ActivityManager::draw() {
     for (auto activity: m_activityStack)
         activity->draw();
+    ofSetColor(255,0,0);
 }
 
 void ActivityManager::update() {
@@ -18,8 +21,8 @@ void ActivityManager::update() {
     }
 }
 
-ActivityManager *ActivityManager::make(ofVideoGrabber &cameraGraber) {
-    m_instance = new ActivityManager(cameraGraber);
+ActivityManager *ActivityManager::make(ofVideoGrabber &cameraGraber, int width, int height) {
+    m_instance = new ActivityManager(cameraGraber, width, height);
     return m_instance;
 }
 

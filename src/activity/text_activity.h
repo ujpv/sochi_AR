@@ -2,6 +2,7 @@
 #define NO_CAMERA_ACTIVITY_H
 
 #include "ofFbo.h"
+#include "ofTrueTypeFont.h"
 
 #include "activity_manager/activity_interface.h"
 
@@ -23,9 +24,12 @@ public:
     virtual ~TextActivity() {}
 
 private:
-    ofFbo FBOimage;
     static const std::string DEFAULT_FONT;
+
+    int m_x, m_y;
+    double m_scale;
     ofTrueTypeFont m_font;
+    std::string m_text;
 };
 
 #endif // NO_CAMERA_ACTIVITY_H

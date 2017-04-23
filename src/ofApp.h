@@ -32,8 +32,6 @@ public:
     void cancelPressed();
 
 private:
-    void writeLog(ofLogLevel level, const std::string &msg);
-
     ofVideoGrabber m_grabber;
     ofxCvColorImage m_cameraImage;
 

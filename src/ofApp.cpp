@@ -4,13 +4,10 @@
 #include "common/common.h"
 #include "activity_manager/activity_manager.h"
 
-////--------------------------------------------------------------
-//const std::string ofApp::LOG_NAME = "Sochi_AR";
-
 //--------------------------------------------------------------
+
 void ofApp::setup() {
     ofSetLogLevel(OF_LOG_VERBOSE);
-//    ofSetOrientation(OF_ORIENTATION_90_LEFT); //?
 
     int w = ofGetWidth();
     int h = ofGetHeight();
@@ -28,8 +25,6 @@ void ofApp::setup() {
 
     ofLogVerbose(LOG_TAG, ss.str());
 
-
-
 //    m_grabber.setPixelFormat(OF_PIXELS_RGB);
     m_grabber.setup(h, w);
     m_cameraImage.allocate(h, w);
@@ -45,12 +40,10 @@ void ofApp::setup() {
         return;
     }
 
-    activityManager->showTextActivity("No camera");
-
-
     androidGrabber->setDeviceID(cameraID);
     androidGrabber->setAutoFocus(true);
-    m_cameraOrientation = androidGrabber->getCameraOrientation(cameraID);
+    int cameraOrientation = androidGrabber->getCameraOrientation(cameraID);
+    activityManager->setCameraTraslate(ofPoint(w, 0), cameraOrientation);
 
 //    m_fern.setup("model.bmp", ofGetHeight(), ofGetWidth());
 }

@@ -21,6 +21,11 @@ void ActivityManager::update() {
     }
 }
 
+void ActivityManager::setCameraTraslate(const ofPoint &translate ,int angle)
+{
+    m_camera_orientation = angle;
+}
+
 ActivityManager *ActivityManager::make(ofVideoGrabber &cameraGraber, int width, int height) {
     m_instance = new ActivityManager(cameraGraber, width, height);
     return m_instance;

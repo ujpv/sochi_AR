@@ -8,7 +8,7 @@
 class MainCameraActivity : public IActivity
 {
 public:
-    MainCameraActivity(ofVideoGrabber &graber);
+    MainCameraActivity(ofVideoGrabber &graber, const ofPoint &translation, int rotation);
     void draw();
     void update();
     void start();
@@ -16,7 +16,7 @@ public:
     bool isFinished() const;
 
 private:
-    ofVideoGrabber &m_graber;
+    ofVideoGrabber &m_grabber;
     int             m_cameraAngle;
     ofPoint         m_cameraTranslation;
 

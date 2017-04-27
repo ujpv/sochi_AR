@@ -21,8 +21,9 @@ void ActivityManager::update() {
     }
 }
 
-void ActivityManager::setCameraTraslate(const ofPoint &translate ,int angle)
+void ActivityManager::setCameraTraslation(const ofPoint &translation ,int angle)
 {
+    m_camera_translation = translation;
     m_camera_orientation = angle;
 }
 

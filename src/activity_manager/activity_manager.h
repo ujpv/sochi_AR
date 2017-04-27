@@ -6,15 +6,15 @@
 
 #include <memory>
 
-#include "activity/text_activity.h"
-#include "activity_interface.h"
+#include "activity/text_activity/text_activity.h"
+#include "activity_manager/activity_manager.h"
 
 class ActivityManager
 {
 public:
     void draw();
     void update();
-    void setCameraTraslate(const ofPoint &translate, int angle);
+    void setCameraTraslation(const ofPoint &translation, int angle);
     static ActivityManager *make(ofVideoGrabber &cameraGraber, int width, int height);
     static ActivityManager *instance();
     void showActivity(std::shared_ptr<IActivity> pActivity);
@@ -34,6 +34,7 @@ private:
     unsigned        m_width;
     unsigned        m_height;
     int             m_camera_orientation;
+    ofPoint         m_camera_translation;
 
     std::vector<std::shared_ptr<IActivity> > m_activityStack;
 };

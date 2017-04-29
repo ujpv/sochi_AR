@@ -1,5 +1,6 @@
 #include "ofGraphics.h"
 
+#include "common/common.h"
 #include "main_camera_activity.h"
 
 MainCameraActivity::MainCameraActivity(ofVideoGrabber &graber, const ofPoint &translation, int rotation)
@@ -7,15 +8,18 @@ MainCameraActivity::MainCameraActivity(ofVideoGrabber &graber, const ofPoint &tr
     , m_cameraAngle(rotation)
     , m_cameraTranslation(translation)
 {
-
+    ofLogNotice(LOG_TAG, "MainCameraActivity::MainCameraActivity(graber: %fx%f, translation = (%f, %f), translation = %i)",
+                 graber.getWidth(), graber.getHeight(), translation.x, translation.y, rotation);
+    m_cameraImage.allocate(m_grabber.getWidth(), m_grabber.getHeight());
 }
 
 void MainCameraActivity::draw()
 {
     ofPushMatrix();
     ofRotate(m_cameraAngle);
-    ofTranslate(m_cameraTranslation);
-    // TODO draw
+//    ofTranslate(m_cameraTranslation);
+    m_cameraImage.draw(m_cameraTranslation);
+//    m_grabber.draw(m_cameraTranslation);
     ofPopMatrix();
 }
 
@@ -25,6 +29,6 @@ void MainCameraActivity::update()
     if (m_grabber.isFrameNew()) {
         m_cameraImage.setFromPixels(m_grabber.getPixels());
         m_grayscaleImage = m_cameraImage;
-        m_fern.update(m_grayscaleImage);
+//        m_fern.update(m_grayscaleImage);
     }
 }

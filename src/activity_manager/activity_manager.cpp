@@ -1,4 +1,7 @@
 #include "activity_manager.h"
+#include "common/common.h"
+#include "activity/text_activity/text_activity.h"
+#include "activity/main_camera_activity/main_camera_activity.h"
 
 #include "ofGraphics.h"
 ActivityManager *ActivityManager::m_instance = nullptr;
@@ -23,6 +26,8 @@ void ActivityManager::update() {
 
 void ActivityManager::setCameraTraslation(const ofPoint &translation ,int angle)
 {
+    ofLogNotice(LOG_TAG, "MActivityManager::setCameraTraslation(translation = (%f, %f), angle = %i)",
+                translation.x, translation.y, angle);
     m_camera_translation = translation;
     m_camera_orientation = angle;
 }
@@ -48,3 +53,14 @@ void ActivityManager::showTextActivity(const string &text) {
                     )
                 );
 }
+
+void ActivityManager::showMainCameraActivity()
+{
+    showActivity(
+                static_pointer_cast<IActivity>(
+                    std::make_shared<MainCameraActivity>(m_cameraGraber, m_camera_translation, m_camera_orientation)
+                    )
+                );
+}
+
+

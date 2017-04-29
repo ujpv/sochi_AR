@@ -33,13 +33,6 @@ public:
 
 private:
     ofVideoGrabber m_grabber;
-    ofxCvColorImage m_cameraImage;
-
     ofxFern m_fern;
 
-    ofxCvGrayscaleImage m_grayscaleImage;
-
-    int m_cameraOrientation;
-
-//    static const std::string LOG_NAME;
 };

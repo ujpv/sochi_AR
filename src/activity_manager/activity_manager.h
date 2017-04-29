@@ -6,8 +6,7 @@
 
 #include <memory>
 
-#include "activity/text_activity/text_activity.h"
-#include "activity_manager/activity_manager.h"
+#include "activity_manager/activity_interface.h"
 
 class ActivityManager
 {
@@ -17,8 +16,11 @@ public:
     void setCameraTraslation(const ofPoint &translation, int angle);
     static ActivityManager *make(ofVideoGrabber &cameraGraber, int width, int height);
     static ActivityManager *instance();
+
     void showActivity(std::shared_ptr<IActivity> pActivity);
+
     void showTextActivity(const std::string &text);
+    void showMainCameraActivity();
 
 private:
     ActivityManager(ofVideoGrabber &cameraGraber, int width, int height)

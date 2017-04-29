@@ -68,29 +68,25 @@ void ofApp::setup() {
         m_grabber.setup(w, h);
         break;
     case 90:
-        activityManager->setCameraTraslation(ofPoint(w, 0), cameraOrientation);
+        activityManager->setCameraTraslation(ofPoint(0, -w), cameraOrientation);
         m_grabber.setup(h, w);
         break;
     case 180:
+        //TODO
         activityManager->setCameraTraslation(ofPoint(w, h), cameraOrientation);
         m_grabber.setup(w, h);
         break;
     case 270:
+        //TODO
         activityManager->setCameraTraslation(ofPoint(0, h), cameraOrientation);
         m_grabber.setup(h, w);
-        break;
         break;
     default:
         activityManager->showTextActivity("Illegal camera orientation");
         return;
     }
 
-//    m_cameraImage.allocate(h, w);
-//    m_grayscaleImage.allocate(h, w);
-
-
-    activityManager->setCameraTraslation(ofPoint(w, 0), cameraOrientation);
-
+    activityManager->showMainCameraActivity();
     //    m_fern.setup("model.bmp", ofGetHeight(), ofGetWidth());
 }
 

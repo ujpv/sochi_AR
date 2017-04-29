@@ -2,6 +2,8 @@
 #define MAIN_CAMERA_ACTIVITY_H
 
 #include "ofVideoGrabber.h"
+#include "ofxCvColorImage.h"
+#include "ofxCvGrayscaleImage.h"
 
 #include "activity_manager/activity_interface.h"
 
@@ -11,14 +13,17 @@ public:
     MainCameraActivity(ofVideoGrabber &graber, const ofPoint &translation, int rotation);
     void draw();
     void update();
-    void start();
-    void finish();
-    bool isFinished() const;
+    void start() {};
+    void finish() {};
+    bool isFinished() const {return false;}
 
 private:
-    ofVideoGrabber &m_grabber;
-    int             m_cameraAngle;
-    ofPoint         m_cameraTranslation;
+    ofVideoGrabber     &m_grabber;
+    int                 m_cameraAngle;
+    ofPoint             m_cameraTranslation;
+    ofxCvColorImage     m_cameraImage;
+    ofxCvGrayscaleImage m_grayscaleImage;
+
 
     // IActivity interface
 };

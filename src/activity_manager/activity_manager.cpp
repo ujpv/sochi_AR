@@ -9,7 +9,6 @@ ActivityManager *ActivityManager::m_instance = nullptr;
 void ActivityManager::draw() {
     for (auto activity: m_activityStack)
         activity->draw();
-    ofSetColor(255,0,0);
 }
 
 void ActivityManager::update() {

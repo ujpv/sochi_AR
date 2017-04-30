@@ -6,6 +6,7 @@
 
 #include <memory>
 
+#include "common/common.h"
 #include "activity_manager/activity_interface.h"
 
 class ActivityManager
@@ -28,11 +29,13 @@ private:
         , m_width(width)
         , m_height(height)
         , m_camera_orientation(0)
-    {}
+    {
+        ofLogNotice(LOG_TAG, "ActivityManager &m_grabber = %lu", (size_t)(&m_cameraGraber));
+    }
 
     static ActivityManager *m_instance;
 
-    ofVideoGrabber  m_cameraGraber;
+    ofVideoGrabber &m_cameraGraber;
     unsigned        m_width;
     unsigned        m_height;
     int             m_camera_orientation;

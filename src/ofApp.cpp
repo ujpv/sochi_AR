@@ -32,8 +32,9 @@ void ofApp::setup() {
         ofLogVerbose(LOG_TAG, "Illegal screen orientation.");
     }
 
-
     ofBackground(0, 0, 0);
+
+    m_grabber.setVerbose(true);
 
     std::vector<ofVideoDevice> cameras = m_grabber.listDevices();
 
@@ -46,8 +47,7 @@ void ofApp::setup() {
 
     ActivityManager *activityManager = ActivityManager::make(m_grabber, w, h);
 
-    ofxAndroidVideoGrabber* androidGrabber = (ofxAndroidVideoGrabber *)m_grabber.getGrabber().get();
-    int cameraID = androidGrabber->getBackCamera();
+    int cameraID = ((ofxAndroidVideoGrabber *)m_grabber.getGrabber().get())->getBackCamera();
     if (cameraID == -1)
         if (cameras.size())
             cameraID = cameras.back().id;
@@ -56,12 +56,9 @@ void ofApp::setup() {
         return;
     }
 
-    androidGrabber->setDeviceID(cameraID);
-    androidGrabber->setAutoFocus(true);
-    int cameraOrientation = androidGrabber->getCameraOrientation(cameraID);
+    int cameraOrientation = ((ofxAndroidVideoGrabber *)m_grabber.getGrabber().get())->getCameraOrientation(cameraID);
     ofLogVerbose(LOG_TAG, "Camera orientation: %i", cameraOrientation);
 
-    m_grabber.setPixelFormat(OF_PIXELS_MONO);
     switch (cameraOrientation) {
     case 0:
         activityManager->setCameraTraslation(ofPoint(0, 0), cameraOrientation);
@@ -86,8 +83,12 @@ void ofApp::setup() {
         return;
     }
 
+
+    ((ofxAndroidVideoGrabber *)m_grabber.getGrabber().get())->setDeviceID(cameraID);
+    ((ofxAndroidVideoGrabber *)m_grabber.getGrabber().get())->setAutoFocus(true);
+    m_grabber.setPixelFormat(OF_PIXELS_RGB);
+
     activityManager->showMainCameraActivity();
-    //    m_fern.setup("model.bmp", ofGetHeight(), ofGetWidth());
 }
 
 //--------------------------------------------------------------
@@ -97,16 +98,6 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    //    ofPushMatrix();
-    //    ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
-    //    ofRotate(m_cameraOrientation);
-    //    ofSetRectMode(OF_RECTMODE_CENTER);
-    //    m_cameraImage.draw(0, 0, m_cameraImage.getWidth(), m_cameraImage.getHeight());
-    //    m_fern.draw(0, 0, ofGetHeight(), ofGetWidth());
-    //    ofSetColor(255);
-    //    if (m_fern.trackedMarker.tracked)
-    //        m_fern.trackedMarker.draw();
-    //    ofPopMatrix();
     ActivityManager::instance()->draw();
 }
 

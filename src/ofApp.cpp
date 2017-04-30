@@ -61,7 +61,7 @@ void ofApp::setup() {
     int cameraOrientation = androidGrabber->getCameraOrientation(cameraID);
     ofLogVerbose(LOG_TAG, "Camera orientation: %i", cameraOrientation);
 
-    m_grabber.setPixelFormat(OF_PIXELS_RGB);
+    m_grabber.setPixelFormat(OF_PIXELS_MONO);
     switch (cameraOrientation) {
     case 0:
         activityManager->setCameraTraslation(ofPoint(0, 0), cameraOrientation);
@@ -111,7 +111,7 @@ void ofApp::draw() {
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed  (int key){
+void ofApp::keyPressed(int key){
 
 }
 

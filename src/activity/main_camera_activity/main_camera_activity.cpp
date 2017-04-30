@@ -17,9 +17,8 @@ void MainCameraActivity::draw()
 {
     ofPushMatrix();
     ofRotate(m_cameraAngle);
-//    ofTranslate(m_cameraTranslation);
-    m_cameraImage.draw(m_cameraTranslation);
-//    m_grabber.draw(m_cameraTranslation);
+//    m_cameraImage.draw(m_cameraTranslation);
+    m_grabber.draw(m_cameraTranslation);
     ofPopMatrix();
 }
 
@@ -27,8 +26,8 @@ void MainCameraActivity::update()
 {
     m_grabber.update();
     if (m_grabber.isFrameNew()) {
-        m_cameraImage.setFromPixels(m_grabber.getPixels());
-        m_grayscaleImage = m_cameraImage;
+        m_cameraImage = m_grabber.getPixels();
+//        m_grayscaleImage = m_cameraImage;
 //        m_fern.update(m_grayscaleImage);
     }
 }

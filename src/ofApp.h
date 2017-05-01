@@ -4,6 +4,8 @@
 #include "ofxAndroid.h"
 #include "ofxFern.h"
 
+#include "utils/fps_counter.h"
+
 class ofApp : public ofxAndroidApp {
 
 public:
@@ -35,4 +37,6 @@ private:
     ofVideoGrabber m_grabber;
     ofxFern m_fern;
 
+    FpsCounter m_cameraFps;
+    FpsCounter m_screenFps;
 };

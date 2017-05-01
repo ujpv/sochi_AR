@@ -86,19 +86,30 @@ void ofApp::setup() {
 
     ((ofxAndroidVideoGrabber *)m_grabber.getGrabber().get())->setDeviceID(cameraID);
     ((ofxAndroidVideoGrabber *)m_grabber.getGrabber().get())->setAutoFocus(true);
-    m_grabber.setPixelFormat(OF_PIXELS_RGB);
 
     activityManager->showMainCameraActivity();
+
+    m_cameraFps.setup("Camera FPS: ", ofPoint(10, 20));
+    m_screenFps.setup("Screen FPS: ", ofPoint(10, 40));
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
     ActivityManager::instance()->update();
+
+    m_cameraFps.update();
+    m_screenFps.update();
+    if (m_grabber.isFrameNew())
+        m_cameraFps.newFrame();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
     ActivityManager::instance()->draw();
+
+    m_screenFps.newFrame();
+    m_cameraFps.draw();
+    m_screenFps.draw();
 }
 
 //--------------------------------------------------------------
@@ -158,7 +169,6 @@ void ofApp::stop() {
 
 //--------------------------------------------------------------
 void ofApp::resume() {
-
 }
 
 //--------------------------------------------------------------

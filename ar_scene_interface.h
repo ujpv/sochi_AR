@@ -1,0 +1,4 @@
+#ifndef AR_SCENE_INTERFACE_H
+#define AR_SCENE_INTERFACE_H
+
+#endif // AR_SCENE_INTERFACE_H

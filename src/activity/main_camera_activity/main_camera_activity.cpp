@@ -18,16 +18,20 @@ MainCameraActivity::MainCameraActivity(ofVideoGrabber &graber, const ofPoint &tr
     m_grayscaleImage.allocate(width, height);
 
     ofLogNotice(LOG_TAG, "MainCameraActivity &m_grabber = %lu", (size_t)(&m_grabber));
+
+    scene.setup("model.bmp", width, height);
+//    scene2.setup("model2.bmp", width, height);
 }
 
 void MainCameraActivity::draw()
 {
     ofPushMatrix();
-    ofRotate(m_cameraAngle);
-    m_cameraImage.draw(m_cameraTranslation);
-    m_grabber.draw(m_cameraTranslation);
+        ofRotate(m_cameraAngle);
+        ofTranslate(m_cameraTranslation);
+        m_grabber.draw(0, 0);
+        scene.draw();
+//        scene2.draw();
     ofPopMatrix();
-    m_grabber.videoSettings();
 }
 
 void MainCameraActivity::update()
@@ -35,5 +39,8 @@ void MainCameraActivity::update()
     m_grabber.update();
     if (m_grabber.isFrameNew()) {
         m_cameraImage = m_grabber.getPixels();
+        m_grayscaleImage = m_cameraImage;
+        scene.update(m_grayscaleImage);
+//        scene2.update(m_grayscaleImage);
     }
 }
